@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/roberto14118927/escuchador.git"
+    "url": "git+https://github.com/AlexPs06/escuchador.git"
   },
   "author": "",
   "license": "ISC",
@@ -24,7 +24,7 @@
     "socket.io": "^2.0.4"
   },
   "bugs": {
-    "url": "https://github.com/roberto14118927/escuchador/issues"
+    "url": "https://github.com/AlexPs06/escuchador.git"
   },
-  "homepage": "https://github.com/roberto14118927/escuchador#readme"
+  "homepage": "https://github.com/AlexPs06/escuchador.git#readme"
 }
