@@ -31,7 +31,7 @@ io.on('connection', function(socket) {
       web_sockets.push(socket)
     
     socket.on('validacion',function(data){
-      socket.emit('mensaje', {latitud:'51.678418',longitud:'7.809007'});
+      socket.emit('localizacion', {latitud:'51.678418',longitud:'7.809007'});
     })
     socket.emit('mensaje', {latitud:'51.678418',longitud:'7.809007'});
 
