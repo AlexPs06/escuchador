@@ -18,9 +18,9 @@ for (var k in interfaces) {
 }
 
 
-var HOST = '134.209.76.81';
-var PORT = 1010;
-server.listen(5010);
+var HOST = '192.168.0.18';
+var PORT = 4000;
+server.listen(5000);
 
 var web_sockets = [];
 
@@ -28,14 +28,44 @@ var web_sockets = [];
 
 
 io.on('connection', function(socket) {
-      web_sockets.push(socket)
-    
-    socket.on('validacion',function(data){
-      socket.emit('localizacion', {latitud:data.latitud,longitud:data.latitud,hola:"hola"});
-    })
-    socket.emit('mensaje', {latitud:'51.678418',longitud:'7.809007'});
+    web_sockets.push(socket)
 
-      
+    // socket.on("room",function(data){
+    //   socket.join(room);
+    // });
+    socket.on('lobby',function(data){
+      console.log("player1 "+ data.player1+" player2 "+ data.player2+" player3 "+ data.player3+" player4 "+ data.player4+" player5 "+ data.player5)
+      console.log("idLobby "+ data.idLobby)
+      socket
+      io.emit('playersLobby',
+       { 
+        idLobby:data.idLobby, 
+        player1:data.player1,
+        player2:data.player2,
+        player3:data.player3,
+        player4:data.player4,
+        player5:data.player5,
+        playersCount:data.playersCount,
+       });
+    })
+    socket.on('destroyUser',function(data){
+      console.log("entre"+ data.userOut)
+      console.log("entre"+ data.idLobby)
+      io.emit('destroy',
+          {
+            playersCount:data.playersCount,
+            userOut:data.userOut,
+            idLobby:data.idLobby
+          });
+
+    })
+    socket.on('reconection',function(data){
+      io.emit('reconectUser');
+    })
+    socket.on('message',function(data){
+      console.log("messaga "+ data.message)
+
+    })
     socket.on('disconnect', function() {
           var idx = web_sockets.indexOf(socket);
 
