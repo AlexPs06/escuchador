@@ -63,7 +63,11 @@ io.on('connection', function(socket) {
       io.emit('reconectUser');
     })
     socket.on('message',function(data){
-      console.log("messaga "+ data.message)
+      console.log("message "+ data.message)
+      console.log("idLobby "+ data.idLobby)
+      console.log("idUser "+ data.idUser)
+
+      io.emit('new-message', { message:data.message, idLobby: data.idLobby, idUser: data.idUser })
 
     })
     socket.on('disconnect', function() {
